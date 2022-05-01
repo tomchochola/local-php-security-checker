@@ -1,11 +1,11 @@
 {
   "require-dev": {
-    "tomchochola/composer-normalize": "dev-master"
+    "tomchochola/composer-normalize": "dev-main"
   },
   "repositories": [
     {
-      "type": "path",
-      "url": "../../../composer-normalize"
+      "type": "vcs",
+      "url": "https://github.com/tomchochola/composer-normalize"
     }
   ],
   "minimum-stability": "dev",
