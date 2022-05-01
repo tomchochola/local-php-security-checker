@@ -1,11 +1,11 @@
 {
   "require-dev": {
-    "tomchochola/php-cs-fixer": "dev-master"
+    "tomchochola/php-cs-fixer": "dev-main"
   },
   "repositories": [
     {
-      "type": "path",
-      "url": "../../../php-cs-fixer"
+      "type": "vcs",
+      "url": "https://github.com/tomchochola/php-cs-fixer"
     }
   ],
   "minimum-stability": "dev",
