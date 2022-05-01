@@ -1,0 +1,16 @@
+{
+  "require-dev": {
+    "tomchochola/php-cs-fixer": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../../php-cs-fixer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  }
+}

@@ -20,6 +20,7 @@ lint: vendor tools
 	tools/prettier/node_modules/.bin/prettier --ignore-path .gitignore -c . '!**/*.svg'
 	${MAKE_COMPOSER} validate --strict
 	${MAKE_PHP} tools/phpstan/vendor/bin/phpstan analyse
+	${MAKE_PHP} tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff
 
 .PHONY: test
 test: vendor vendor/bin/phpunit
@@ -28,6 +29,7 @@ test: vendor vendor/bin/phpunit
 .PHONY: fix
 fix: tools
 	tools/prettier/node_modules/.bin/prettier --ignore-path .gitignore -w . '!**/*.svg'
+	${MAKE_PHP} tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
 
 .PHONY: clean
 clean:
@@ -42,7 +44,7 @@ cold:
 ci: check
 
 # Dependencies
-tools: tools/prettier/node_modules/.bin/prettier tools/phpstan/vendor/bin/phpstan
+tools: tools/prettier/node_modules/.bin/prettier tools/phpstan/vendor/bin/phpstan tools/php-cs-fixer/vendor/bin/php-cs-fixer
 
 tools/prettier/node_modules/.bin/prettier:
 	npm --prefix=tools/prettier update
@@ -52,3 +54,6 @@ vendor vendor/bin/phpunit:
 
 tools/phpstan/vendor/bin/phpstan:
 	${MAKE_COMPOSER} --working-dir=tools/phpstan update
+
+tools/php-cs-fixer/vendor/bin/php-cs-fixer:
+	${MAKE_COMPOSER} --working-dir=tools/php-cs-fixer update
