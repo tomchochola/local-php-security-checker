@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tomchochola\ComposerLibrary\Tests;
+namespace Tomchochola\LocalPhpSecurityChecker\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

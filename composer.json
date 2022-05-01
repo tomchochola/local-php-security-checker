@@ -1,11 +1,11 @@
 {
-  "name": "tomchochola/composer-library",
-  "description": "Composer library",
+  "name": "tomchochola/local-php-security-checker",
+  "description": "fabpot/local-php-security-checker installer",
   "license": "proprietary",
-  "type": "library",
+  "type": "composer-plugin",
   "keywords": [
     "tomchochola",
-    "composer-library"
+    "local-php-security-checker"
   ],
   "authors": [
     {
@@ -14,7 +14,8 @@
     }
   ],
   "require": {
-    "php": "^8.1"
+    "php": "^8.1",
+    "composer-plugin-api": "^2.0"
   },
   "require-dev": {
     "composer/composer": "^2.0",
@@ -24,15 +25,26 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "Tomchochola\\ComposerLibrary\\": "src/"
+      "Tomchochola\\LocalPhpSecurityChecker\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tomchochola\\ComposerLibrary\\Tests\\": "tests/"
+      "Tomchochola\\LocalPhpSecurityChecker\\Tests\\": "tests/"
     }
   },
   "config": {
     "sort-packages": true
+  },
+  "extra": {
+    "class": "Tomchochola\\LocalPhpSecurityChecker\\LocalPhpSecurityCheckerInstaller"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Tomchochola\\LocalPhpSecurityChecker\\LocalPhpSecurityCheckerInstaller::install"
+    ],
+    "post-update-cmd": [
+      "Tomchochola\\LocalPhpSecurityChecker\\LocalPhpSecurityCheckerInstaller::update"
+    ]
   }
 }
