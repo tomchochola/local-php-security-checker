@@ -20,6 +20,7 @@ lint: vendor tools
 	tools/prettier/node_modules/.bin/prettier --ignore-path .gitignore -c . '!**/*.svg'
 	${MAKE_COMPOSER} validate --strict
 	${MAKE_PHP} tools/phpstan/vendor/bin/phpstan analyse
+	set -e; for file in composer.json tools/*/composer.json; do ${MAKE_PHP} tools/composer-normalize/vendor/bin/composer-normalize $$file --dry-run --diff --indent-size=2 --indent-style=space; done
 	${MAKE_PHP} tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff
 
 .PHONY: test
@@ -30,6 +31,10 @@ test: vendor vendor/bin/phpunit
 fix: tools
 	tools/prettier/node_modules/.bin/prettier --ignore-path .gitignore -w . '!**/*.svg'
 	${MAKE_PHP} tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
+
+.PHONY: composer-normalize
+composer-normalize: tools
+	set -e; for file in composer.json tools/*/composer.json; do ${MAKE_PHP} tools/composer-normalize/vendor/bin/composer-normalize $$file --indent-size=2 --indent-style=space; done
 
 .PHONY: clean
 clean:
@@ -44,7 +49,7 @@ cold:
 ci: check
 
 # Dependencies
-tools: tools/prettier/node_modules/.bin/prettier tools/phpstan/vendor/bin/phpstan tools/php-cs-fixer/vendor/bin/php-cs-fixer
+tools: tools/prettier/node_modules/.bin/prettier tools/phpstan/vendor/bin/phpstan tools/php-cs-fixer/vendor/bin/php-cs-fixer tools/composer-normalize/vendor/bin/composer-normalize
 
 tools/prettier/node_modules/.bin/prettier:
 	npm --prefix=tools/prettier update
@@ -57,3 +62,6 @@ tools/phpstan/vendor/bin/phpstan:
 
 tools/php-cs-fixer/vendor/bin/php-cs-fixer:
 	${MAKE_COMPOSER} --working-dir=tools/php-cs-fixer update
+
+tools/composer-normalize/vendor/bin/composer-normalize:
+	${MAKE_COMPOSER} --working-dir=tools/composer-normalize update

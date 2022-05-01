@@ -1,0 +1,19 @@
+{
+  "require-dev": {
+    "tomchochola/composer-normalize": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../../composer-normalize"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "tomchochola/composer-normalize": true
+    },
+    "sort-packages": true
+  }
+}
