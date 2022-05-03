@@ -85,6 +85,12 @@ class LocalPhpSecurityCheckerInstaller implements PluginInterface, EventSubscrib
             throw new RuntimeException('Could not write binary.');
         }
 
+        $ok = \touch($localPathWithExtension);
+
+        if ($ok === false) {
+            throw new RuntimeException('Could not write binary.');
+        }
+
         $hash = \hash_file('sha256', $localPathWithExtension);
 
         if ($hash === false) {
