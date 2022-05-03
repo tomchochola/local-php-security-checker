@@ -185,7 +185,7 @@ class LocalPhpSecurityCheckerInstaller implements PluginInterface, EventSubscrib
     protected static function remotePath(): array
     {
         $os = \PHP_OS_FAMILY;
-        $architecture = \php_uname('m');
+        $architecture = \mb_strtolower(\php_uname('m'));
 
         if (! \array_key_exists($os, static::OS)) {
             throw new RuntimeException("Unsupported os: [{$os}].");
