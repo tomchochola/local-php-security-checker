@@ -201,7 +201,7 @@ class LocalPhpSecurityCheckerInstaller implements PluginInterface, EventSubscrib
             throw new RuntimeException('Could not download latest release.');
         }
 
-        $lines = \explode(\PHP_EOL, $checksums);
+        $lines = \explode("\n", $checksums);
 
         foreach ($lines as $line) {
             $line = \str_replace('  ', ' ', $line);
