@@ -30,6 +30,7 @@ class LocalPhpSecurityCheckerInstaller implements PluginInterface, EventSubscrib
         'x86_64' => 'amd64',
         'amd64' => 'amd64',
         'arm' => 'arm64',
+        'arm64' => 'arm64',
     ];
 
     /**
