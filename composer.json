@@ -1,7 +1,7 @@
 {
   "name": "tomchochola/local-php-security-checker",
   "description": "fabpot/local-php-security-checker installer",
-  "license": "proprietary",
+  "license": "CC-BY-ND-4.0",
   "type": "composer-plugin",
   "keywords": [
     "tomchochola",
